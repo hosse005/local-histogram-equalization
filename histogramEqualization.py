@@ -17,10 +17,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 
-
 # Global parameters
 max_intensity = 255  # standard 8 bit grayscale max
-
 
 # Entry point
 def main():
@@ -58,13 +56,14 @@ def main():
 
     # Equalize histogram
     eqData = equalizeHistogram(data)
-    hist, _ = np.histogram(eqData, bins=max_intensity+1)
+    hist, _ = np.histogram(eqData, bins=max_intensity+1,
+                           range=(0,max_intensity))
+
     plotHistogram(hist, 'Output Histogram')
 
     # Write histogram equalized output to file
     img = Image.fromarray(eqData)
-    img.save(outputFile)
-        
+    img.save(outputFile)        
 
 # Histogram equalization
 def equalizeHistogram(data):
@@ -77,7 +76,9 @@ def equalizeHistogram(data):
     nPixels = data.shape[0] * data.shape[1]
 
     # First calculate the histogram of the input
-    hist, _ = np.histogram(data, bins=max_intensity+1)
+    hist, _ = np.histogram(data, bins=max_intensity+1,
+                           range=(0,max_intensity))
+
     assert hist.sum() / nPixels == 1, 'Unexpected input data format!'
     plotHistogram(hist, 'Input Histogram')
     
@@ -99,7 +100,20 @@ def equalizeHistogram(data):
 
     return eqData
 
-        
+# Function for calcuating the histogram
+def calcHistogram(data):
+    '''
+    @param data : input array to calculate histogram
+    @return hist : histogram array
+    '''
+    hist = np.zeros(max_intensity+1, dtype=np.uint8)
+
+    for value in data:
+        idx = np.uint8(value)
+        hist[idx] = hist[idx] + 1
+
+    return hist
+    
 # Histogram plotter
 def plotHistogram(data, title):
     '''
@@ -120,8 +134,7 @@ def plotHistogram(data, title):
     except IOError:
         print('Unable to write histogram to file %s!' % histFile)
               
-    #plt.show()
-    
+    #plt.show()    
         
 if __name__ == '__main__':
     main()
