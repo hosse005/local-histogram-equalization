@@ -4,7 +4,7 @@
 CS712 Final Project Submission
 This module performs image contrast enhancement via histogram equalization
 Example:
-    $ python histogramEqualization.py -i <input_image> -o <output_image>
+    $ python histogramEqualization.py -i <input_image> -o <output_image> -n <neighborhood_size>
 """
 
 __author__ = 'Evan Hosseini'
