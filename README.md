@@ -35,10 +35,10 @@ instead of global equalization, pass -n switch specifying the size of the neighb
 This parameter must be an odd number.  See below for examples on how the images
 contained in this package were generated:
 
-###Global Equalization
+#####Global Equalization
 evan@pc ~ $ ./histogramEqualization.py -i light_bean.jpg -o light_bean_eq.jpg
 
-###Local Equalization w/ neighborhood of size 3
+#####Local Equalization w/ neighborhood of size 3
 evan@pc ~ $ ./histogramEqualization.py -i test_pattern.jpg -o test_pattern_local_n_3.jpg -n 3
 
 #Notes:
