@@ -8,6 +8,7 @@ This package contains my final project submission.
 
 #Contents:
 README.md - this file
+CS712 Final Project - Histogram Equalization.pptx - Project presentation
 histogramEqualization.py - Source python file for this project
 light_bean.jpg - Heavily saturated input image for test
 dark_bean.jpg - Heavily suppressed input image for test
